@@ -1,6 +1,5 @@
 require('dotenv').config();
 const events = require('./events.js');
-require('./caps.js')
 const storeName = process.env.STORE_NAME;
 
 const faker = require('faker');
@@ -15,4 +14,10 @@ function generateOrder() {
     return newOrder
 }
 
-module.exports = generateOrder;
+setInterval(() => {
+    events.emit('pickup', generateOrder())
+},5000)
+
+events.on('delivered' , ()=>{
+console.log(`VENDOR: Thank you for delivering ${generateOrder().orderID}`);
+})

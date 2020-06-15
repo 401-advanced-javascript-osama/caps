@@ -12,3 +12,7 @@ time : ${time}`,
 payload)
 }
 
+require('./vendor.js')
+require('./driver.js')
+
+
